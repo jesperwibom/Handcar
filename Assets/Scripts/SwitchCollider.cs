@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * Has two uses:
+ * check for players and give them new path points (through SwitchActivator)
+ * check for track switch collider and changethe exit point state if applicable
+ */
+
 public class SwitchCollider : MonoBehaviour {
 
 	public Transform enterPoint;
@@ -11,6 +17,9 @@ public class SwitchCollider : MonoBehaviour {
 
 	private Transform activeExitPoint;
 
+	public SwitchModel switchModel;
+
+	//set to private and use CheckPlayer() instead
 	public bool player1 = false;
 	public bool player2 = false;
 
@@ -25,40 +34,52 @@ public class SwitchCollider : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col){
+
 		if (col.gameObject.tag == "Player1") {
 			player1 = true;
-
 		}
 		if (col.gameObject.tag == "Player2") {
 			player2 = true;
-
 		}
+
+		if (col.gameObject.name == "TrackSwitch") {
+			if (col.GetComponent<TrackSwitch> ().switchState == -1) {
+				SwitchLeft ();
+			} else if (col.GetComponent<TrackSwitch> ().switchState == 1) {
+				SwitchRight ();
+			}
+		}
+
 	}
+
 	void onTriggerExit(Collider col){
+
 		if (col.gameObject.tag == "Player1") {
 			player1 = false;
-
 		}
 		if (col.gameObject.tag == "Player2") {
 			player2 = false;
-
 		}
+
 	}
 
 	void SetActiveExitPoint(Transform exitPoint){
 		activeExitPoint = exitPoint;
-		//Call railManager.UpdateModel()
+		if (switchModel != null) {
+			switchModel.UpdateModel(gameObject.name,currentState);
+		}
+
 	}
 
 	void SwitchLeft(){
 		if (activeExitPoint == exitPointL) {
-			// Call soundManager.NoSwitch()
+			// Call SoundManager.NoSwitch()
 		} else if (activeExitPoint == exitPointC) {
 			if (exitPointL != null) {
 				currentState = -1;
 				SetActiveExitPoint (exitPointL);
 			} else {
-				// Call soundManager.NoSwitch()
+				// Call SoundManager.NoSwitch()
 			}
 		} else if (activeExitPoint == exitPointR) {
 			currentState = 0;
@@ -68,13 +89,13 @@ public class SwitchCollider : MonoBehaviour {
 
 	void SwitchRight(){
 		if (activeExitPoint == exitPointR) {
-			// Call soundManager.NoSwitch()
+			// Call SoundManager.NoSwitch()
 		} else if (activeExitPoint == exitPointC) {
 			if (exitPointR != null) {
 				currentState = 1;
 				SetActiveExitPoint (exitPointR);
 			} else {
-				// Call soundManager.NoSwitch()
+				// Call SoundManager.NoSwitch()
 			}
 		} else if (activeExitPoint == exitPointL) {
 			currentState = 0;
@@ -88,5 +109,15 @@ public class SwitchCollider : MonoBehaviour {
 
 	public Vector3 GetExitPoint(){
 		return activeExitPoint.position;
+	}
+
+	public bool CheckPlayer(string player){
+		if (player == "player1" || player == "Player1" || player == "PLAYER1") {
+			return player1;
+		} else if (player == "player2" || player == "Player2" || player == "PLAYER2") {
+			return player2;
+		} else {
+			return false;
+		}
 	}
 }

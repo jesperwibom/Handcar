@@ -76,6 +76,14 @@ public class PlayerMovement : MonoBehaviour {
 		Debug.Log ("Extending exitPoint");
 	}
 
+	public Vector3 GetEnterPoint(){
+		return enterPoint;
+	}
+
+	public Vector3 GetExitPoint(){
+		return exitPoint;
+	}
+
 	public void ChangeSpeed(float speedChange){
 		speed += speedChange;
 	}
