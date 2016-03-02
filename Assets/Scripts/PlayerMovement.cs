@@ -6,7 +6,6 @@ public class PlayerMovement : MonoBehaviour {
 	public float minSpeed = 0.1f;
 	public float maxSpeed = 2f;
 	public float slowDown = 0.02f;
-
 	public float gravity = 0.5f;
 
 	// public ModelManager model;
@@ -16,35 +15,48 @@ public class PlayerMovement : MonoBehaviour {
 	private Vector3 enterPoint;
 	private Vector3 exitPoint;
 
-
 	bool grounded = true;
 
+	void Start(){
+		enterPoint = gameObject.transform.position;
+		exitPoint = new Vector3 (gameObject.transform.position.x + 1, gameObject.transform.position.y, gameObject.transform.position.z);
+	}
+
 	void Update(){
-		if (speed > minSpeed) {
-			speed -= speed * slowDown;
-		}
-		if (speed < minSpeed) {
-			speed = minSpeed;
+		//Check if exitPoint reached : extend exitPoint on x-axis with 1 unit
+		if (gameObject.transform.position == exitPoint) {
+			ExtendExitPoint (1f);
 		}
 	}
 
 	void FixedUpdate(){
+		CorrectSpeed ();
 		Move ();
 		CorrectPosition ();
 	}
 
 	void Move(){
-		/*
+		
 		float step = speed * Time.deltaTime;
 		transform.position = Vector3.MoveTowards(transform.position, exitPoint, step);
-		*/
+
 	}
 
 	void CorrectPosition(){
 
 	}
 
-
+	void CorrectSpeed(){
+		if (speed > minSpeed) {
+			speed -= speed * slowDown;
+		}
+		if (speed < minSpeed) {
+			speed = minSpeed;
+		}
+		if (speed > maxSpeed && maxSpeed != 0f) {
+			speed = maxSpeed;
+		}
+	}
 
 
 
@@ -57,15 +69,18 @@ public class PlayerMovement : MonoBehaviour {
 		exitPoint = newExitPoint;
 	}
 
-	public void ExtendExitPoint(){
-
+	public void ExtendExitPoint(float extension){
+		enterPoint = exitPoint;
+		exitPoint = new Vector3 (exitPoint.x + extension, exitPoint.y, exitPoint.z);
+		Debug.Log ("Extending exitPoint");
 	}
 
-	public void IncreaseSpeed(float speedIncrease){
-		speed += speedIncrease;
-		if (speed > maxSpeed) {
-			speed = maxSpeed;
-		}
+	public void ChangeSpeed(float speedChange){
+		speed += speedChange;
+	}
+
+	public void Jump(){
+
 	}
 
 }
