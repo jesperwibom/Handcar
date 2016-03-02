@@ -8,16 +8,26 @@ public class CameraController : MonoBehaviour {
 	private Vector3 newPos;
 	private float newXPos;
 	private float speed = 1f;
+	PlayerMovement playerMovement;
+	private float originZ;
+
+
 	private GameObject player1;
 	private GameObject player2;
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log ("player 1 is set to " + player1);
-		Debug.Log ("player 2 is set to " + player2);
+		originZ = transform.position.z;
+
 		player1 = GameObject.FindGameObjectWithTag ("Player1");
 		player2 = GameObject.FindGameObjectWithTag ("Player2");
-		Debug.Log ("player 1 is set to " + player1);
+		if (player1 != null) {
+			Debug.Log ("Found player " + player1);
+			playerMovement = player1.GetComponent<PlayerMovement>();
+		}
+		if (player2 != null) {
+			Debug.Log ("Found player " + player2);
+		}
 		Debug.Log ("player 2 is set to " + player2);
 	}
 	
@@ -28,9 +38,18 @@ public class CameraController : MonoBehaviour {
 	void FixedUpdate(){
 
 		newPos = new Vector3 (player1.transform.position.x, transform.position.y, transform.position.z);
-		Debug.Log ("new x pos is " + newPos);
-		float step = speed * Time.deltaTime;
+
+		// Debug.Log ("new x pos is " + newPos);
+		// float step = speed * Time.deltaTime;
+		float step = playerMovement.GetSpeed() * Time.deltaTime;
 		transform.position = Vector3.MoveTowards(transform.position, newPos, step);
+	
+		if (playerMovement.GetSpeed () > playerMovement.maxSpeed - 1f) {
+			Debug.Log ("maxspeed, zooming out");
+			newPos = new Vector3 (player1.transform.position.x, transform.position.y, transform.position.z - 3f);
+		} else {
+			newPos = new Vector3 (player1.transform.position.x, transform.position.y, originZ);
+		}
 	}
 
 }
