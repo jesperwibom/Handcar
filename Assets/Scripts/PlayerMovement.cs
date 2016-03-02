@@ -67,6 +67,7 @@ public class PlayerMovement : MonoBehaviour {
 	public void SetPathPoints(Vector3 newEnterPoint, Vector3 newExitPoint){
 		enterPoint = newEnterPoint;
 		exitPoint = newExitPoint;
+		Debug.Log ("Recieved new path points");
 	}
 
 	public void ExtendExitPoint(float extension){
@@ -77,6 +78,14 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void ChangeSpeed(float speedChange){
 		speed += speedChange;
+	}
+
+	public void SetSpeed(float newSpeed){
+		speed = newSpeed;
+	}
+
+	public float GetSpeed(){
+		return speed;
 	}
 
 	public void Jump(){
