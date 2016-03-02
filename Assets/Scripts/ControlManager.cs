@@ -48,7 +48,9 @@ public class ControlManager : MonoBehaviour {
 		if(keyboardControl && Input.GetKeyDown("space")){
 			player1.Jump ();
 		}
-
+		if(keyboardControl && Input.GetKeyDown("left")){
+			player2.ChangeSpeed (0.5f);
+		}
 		//take serial data from arduino
 		//arduino sends the hall effect sensor value mapped to 0-255 
 		//center position is 127-128
