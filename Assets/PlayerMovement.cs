@@ -3,9 +3,9 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
-	public float minSpeed = 0.1;
+	public float minSpeed = 0.1f;
 	public float maxSpeed = 2f;
-	public float slowDown = 0.02;
+	public float slowDown = 0.02f;
 
 	public float gravity = 0.5f;
 
@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour {
 		return grounded;
 	}
 
-	public void SetPathPoints(Transform newEnterPoint, Transform newExitPoint){
+	public void SetPathPoints(Vector3 newEnterPoint, Vector3 newExitPoint){
 		enterPoint = newEnterPoint;
 		exitPoint = newExitPoint;
 	}

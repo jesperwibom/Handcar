@@ -82,11 +82,11 @@ public class SwitchCollider : MonoBehaviour {
 		}
 	}
 
-	public Transform GetEnterPoint(){
-		return enterPoint;
+	public Vector3 GetEnterPoint(){
+		return enterPoint.position;
 	}
 
-	public Transform GetExitPoint(){
-		return activeExitPoint;
+	public Vector3 GetExitPoint(){
+		return activeExitPoint.position;
 	}
 }
