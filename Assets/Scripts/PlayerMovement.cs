@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void Jump(){
-
+		Debug.Log ("JUMP!");
 	}
 
 }
