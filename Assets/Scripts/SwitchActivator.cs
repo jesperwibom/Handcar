@@ -8,7 +8,7 @@ public class SwitchActivator : MonoBehaviour {
 	public SwitchCollider switchColliderR;
 
 	void OnTriggerEnter(Collider col){
-		if (col.gameObject.tag == "Player1" || col.gameObject.tag == "Player2") {
+		if (col.gameObject.tag == "Player1Collider" || col.gameObject.tag == "Player2Collider") {
 			HandlePlayer (col.gameObject);
 		}
 	}

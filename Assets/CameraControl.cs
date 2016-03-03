@@ -5,6 +5,7 @@ public class CameraControl : MonoBehaviour {
 
 	private GameObject player1; 					// Ref. to players in order to find positions, speed, etc
 	private GameObject player2;
+	public PlayerMovement playerMovement;
 
 	private float playerDistance; 					// Holds calculation of distance between players 
 	private float maxDistance = 11f;				// Maximum distance where camera can follow both players
@@ -12,7 +13,7 @@ public class CameraControl : MonoBehaviour {
 	public float m_DampTime = 0.2f;                 // Approximate time for the camera to refocus.
 	public float m_ScreenEdgeBuffer = 1f;           // Space between the top/bottom most target and the screen edge.
 	public float m_MinSize = 0.5f;                  // The smallest orthographic size the camera can be.
-	/* [HideInInspector] */ public Transform[] m_Targets; // All the targets the camera needs to encompass.
+	public Transform[] m_Targets; 					// All the targets the camera needs to encompass.
 
 
 	private Camera m_Camera;                        // Used for referencing the camera.
@@ -38,6 +39,7 @@ public class CameraControl : MonoBehaviour {
 		if (player1 == null || player2 == null) {
 			Debug.Log ("Player1 or Player2 is missing!");
 		}
+		playerMovement = player1.GetComponent<PlayerMovement> ();
 	}
 
 
@@ -67,12 +69,12 @@ public class CameraControl : MonoBehaviour {
 		// Else find the average position of the targets to follow both players.
 
 		if (playerDistance > maxDistance && player1.transform.position.x < player2.transform.position.x) {
-			Debug.Log ("Max distance reached and player 2 is in the lead!");
+			// Debug.Log ("Max distance reached and player 2 is in the lead!");
 		
 			followLeader (player2.transform);
 		
 		} else if (playerDistance > maxDistance && player1.transform.position.x > player2.transform.position.x) {
-			Debug.Log ("Max distance reached and player 1 is in the lead!");
+			// Debug.Log ("Max distance reached and player 1 is in the lead!");
 			followLeader (player1.transform);
 		
 		}else{
@@ -80,7 +82,10 @@ public class CameraControl : MonoBehaviour {
 		}
 
 			// Smoothly transition to that position.
-				transform.position = Vector3.SmoothDamp (transform.position, m_DesiredPosition, ref m_MoveVelocity, m_DampTime);
+		// float step = playerMovement.GetSpeed() * Time.deltaTime;
+		// transform.position = Vector3.MoveTowards(transform.position, m_DesiredPosition, step);
+
+		 transform.position = Vector3.SmoothDamp (transform.position, m_DesiredPosition, ref m_MoveVelocity, m_DampTime);
 		}
 
 
