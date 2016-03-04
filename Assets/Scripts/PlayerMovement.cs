@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
+	public bool playerActive = true;
+
 	[Header("Speed variables")]
 	public float minSpeed = 0.1f;
 	public float maxSpeed = 2f;
@@ -21,7 +23,6 @@ public class PlayerMovement : MonoBehaviour {
 
 	[Header("GUI variables")]
 	public GameObject trackIndicator;
-
 
 	private Vector3 enterPoint;
 	private Vector3 exitPoint;
@@ -167,5 +168,37 @@ public class PlayerMovement : MonoBehaviour {
 		}
 			
 		grounded = true;
+	}
+
+
+	public void Crash(string type){
+
+		GameObject cart = model.transform.GetChild (0).gameObject;
+		Rigidbody rb = cart.GetComponent<Rigidbody> ();
+		playerActive = false;
+
+		//model.transform.parent = null;
+		cart.transform.parent = null;
+
+
+
+		rb.useGravity = true;
+		rb.isKinematic = false;
+		rb.AddForce (Vector3.right * 1500f);
+
+		if (type == "ground") {
+			StartCoroutine (GroundCrash (cart));
+		}
+	}
+
+	IEnumerator GroundCrash(GameObject go){
+		
+		while (go.transform.position.y > -0.2f) {
+			Debug.Log (go.transform.position.y);
+			yield return null;
+		
+		}
+		go.GetComponent<Rigidbody>().AddForce (Vector3.up * 200f);
+		go.GetComponent<Rigidbody>().AddForce (Vector3.forward * 100f);
 	}
 }
