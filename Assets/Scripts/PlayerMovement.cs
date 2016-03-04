@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Update(){
 		//Check if exitPoint reached : extend exitPoint
+		//Vector3 point = new Vector3(exitPoint.x+1f,exitPoint.y,exitPoint.z);
 		if (gameObject.transform.position == exitPoint) {
 			ExtendExitPoint (2f);
 		}
@@ -78,8 +79,21 @@ public class PlayerMovement : MonoBehaviour {
 	// SPEED //-------------------------//
 	public void SetPathPoints(Vector3 newEnterPoint, Vector3 newExitPoint){
 		enterPoint = newEnterPoint;
-		exitPoint = newExitPoint;
-		Debug.Log ("Recieved new path points");
+
+		float zCorrection = 0;
+		if (newExitPoint.z == newEnterPoint.z) {
+			zCorrection = 0;
+		} else {
+			if (newExitPoint.z < newEnterPoint.z) {
+				zCorrection = -0.05f;
+			}
+			if (newExitPoint.z > newEnterPoint.z) {
+				zCorrection = 0.05f;
+			}
+		}
+
+		exitPoint = new Vector3(newExitPoint.x+0.05f,newExitPoint.y,newExitPoint.z-zCorrection);
+		//Debug.Log ("Recieved new path points");
 	}
 
 	public void ExtendExitPoint(float extension){
@@ -128,9 +142,9 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void Jump(){
-		StartCoroutine (Jumping ());
-
-
+		if (grounded) {
+			StartCoroutine (Jumping ());
+		}
 	}
 
 	public void JumpSwitch(int state){
