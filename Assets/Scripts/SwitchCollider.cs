@@ -35,10 +35,10 @@ public class SwitchCollider : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col){
 
-		if (col.gameObject.tag == "Player1") {
+		if (col.gameObject.tag == "Player1Collider") {
 			player1 = true;
 		}
-		if (col.gameObject.tag == "Player2") {
+		if (col.gameObject.tag == "Player2Collider") {
 			player2 = true;
 		}
 
@@ -52,12 +52,12 @@ public class SwitchCollider : MonoBehaviour {
 
 	}
 
-	void onTriggerExit(Collider col){
+	void OnTriggerExit(Collider col){
 
-		if (col.gameObject.tag == "Player1") {
+		if (col.gameObject.tag == "Player1Collider") {
 			player1 = false;
 		}
-		if (col.gameObject.tag == "Player2") {
+		if (col.gameObject.tag == "Player2Collider") {
 			player2 = false;
 		}
 

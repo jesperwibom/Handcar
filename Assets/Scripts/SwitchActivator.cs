@@ -16,7 +16,15 @@ public class SwitchActivator : MonoBehaviour {
 	void HandlePlayer(GameObject go){
 
 		PlayerMovement playerMovement = go.GetComponentInParent<PlayerMovement> ();
-		string player = go.tag;
+
+		string tag = go.tag;
+		string player = "player";
+
+		if (tag == "Player1Collider") {
+			player = "Player1";
+		} else if (tag == "Player2Collider") {
+			player = "Player2";
+		}
 
 		if (switchColliderL != null && switchColliderL.CheckPlayer(player)) {
 			if (playerMovement.isGrounded ()) {
