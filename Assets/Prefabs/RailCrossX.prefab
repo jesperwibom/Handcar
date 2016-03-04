@@ -630,7 +630,7 @@ MonoBehaviour:
   enterPoint: {fileID: 435346}
   exitPointL: {fileID: 0}
   exitPointC: {fileID: 477464}
-  exitPointR: {fileID: 419472}
+  exitPointR: {fileID: 492326}
   switchModel: {fileID: 11485158}
   player1: 0
   player2: 0
