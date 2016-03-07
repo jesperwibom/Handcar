@@ -8,7 +8,7 @@ using System.Collections;
  * It also will include public methods for sending commands to the controllers.
  */
 
-public class ControlManager : MonoBehaviour {
+public class ControlManagerOld : MonoBehaviour {
 
 	public GameObject player1;
 	public GameObject player2;

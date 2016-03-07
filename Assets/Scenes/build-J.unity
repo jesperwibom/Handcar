@@ -942,6 +942,49 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: deab21adab7234171ae00cfee8f14311, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1414104041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1414104043}
+  - 114: {fileID: 1414104042}
+  m_Layer: 0
+  m_Name: Arduino1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1414104042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1414104041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee80ba8b4c5bd46839658bcfeb780748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PortName: 
+  Baud: 57600
+  RebootDelay: 3
+  AutoConnect: 1
+--- !u!4 &1414104043
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1414104041}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.74059165, y: -1.2095718, z: 0.8446045}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
 --- !u!4 &1500173693 stripped
 Transform:
   m_PrefabParentObject: {fileID: 452420, guid: 0830217a585aa406aa89b44cab0c037d, type: 2}
@@ -1001,6 +1044,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1598492948}
   - 114: {fileID: 1598492947}
+  - 114: {fileID: 1598492949}
   m_Layer: 0
   m_Name: ControlManager
   m_TagString: Untagged
@@ -1014,7 +1058,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1598492946}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9576b93feb21f4293a1cd8d2cb7e4508, type: 3}
   m_Name: 
@@ -1022,7 +1066,7 @@ MonoBehaviour:
   player1: {fileID: 979316608}
   player2: {fileID: 2017360845}
   keyboardControl: 1
-  player1active: 1
+  player1active: 0
   player2active: 1
 --- !u!4 &1598492948
 Transform:
@@ -1036,6 +1080,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!114 &1598492949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1598492946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cc916d8cfb804921a7ed0ab49ada5b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arduino1: {fileID: 1414104042}
+  arduino2: {fileID: 0}
+  player1: {fileID: 979316608}
+  player2: {fileID: 2017360845}
+  gameRunning: 0
+  keyboardControl: 1
+  player1active: 1
+  player2active: 1
 --- !u!1 &1663026966
 GameObject:
   m_ObjectHideFlags: 0
