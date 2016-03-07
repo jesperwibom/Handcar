@@ -103,10 +103,10 @@ public class PlayerMovement : MonoBehaviour {
 			zCorrection = 0;
 		} else {
 			if (exitPoint.z < enterPoint.z) {
-				zCorrection = -extension;
+				zCorrection = -(extension * 0.5f);
 			}
 			if (exitPoint.z > enterPoint.z) {
-				zCorrection = extension;
+				zCorrection = (extension * 0.5f);
 			}
 		}
 		enterPoint = exitPoint;
@@ -184,21 +184,38 @@ public class PlayerMovement : MonoBehaviour {
 
 		rb.useGravity = true;
 		rb.isKinematic = false;
-		rb.AddForce (Vector3.right * 1500f);
-
 		if (type == "ground") {
 			StartCoroutine (GroundCrash (cart));
 		}
+		if (type == "wall") {
+			StartCoroutine (WallCrash (cart));
+		}
+
 	}
 
 	IEnumerator GroundCrash(GameObject go){
-		
-		while (go.transform.position.y > -0.2f) {
+		go.GetComponent<Rigidbody>().AddForce (Vector3.down * 300f);
+		go.GetComponent<Rigidbody>().AddForce (Vector3.right * 100f);
+		while (go.transform.position.y > -0.3f) {
 			Debug.Log (go.transform.position.y);
 			yield return null;
 		
 		}
-		go.GetComponent<Rigidbody>().AddForce (Vector3.up * 200f);
+		go.GetComponent<Rigidbody>().AddForce (Vector3.up * 400f);
+		go.GetComponent<Rigidbody>().AddForce (Vector3.right * 100f);
+		go.GetComponent<Rigidbody>().AddForce (Vector3.forward * 60f);
+		Destroy (gameObject);
+	}
+
+	IEnumerator WallCrash(GameObject go){
+		go.GetComponent<Rigidbody>().AddForce (Vector3.left * 200f);
+		while (go.transform.position.y > -0.2f) {
+			Debug.Log (go.transform.position.y);
+			yield return null;
+
+		}
+		go.GetComponent<Rigidbody>().AddForce (Vector3.up * 140f);
 		go.GetComponent<Rigidbody>().AddForce (Vector3.forward * 100f);
+		Destroy (gameObject);
 	}
 }

@@ -9,7 +9,11 @@ public class SwitchActivator : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col){
 		if (col.gameObject.tag == "Player1Collider" || col.gameObject.tag == "Player2Collider") {
-			HandlePlayer (col.gameObject);
+			if (!col.gameObject.GetComponentInParent<PlayerMovement> ().isGrounded ()) {
+				StartCoroutine (WaitForGround (col.gameObject));
+			} else {
+				HandlePlayer (col.gameObject);
+			}
 		}
 	}
 
@@ -47,5 +51,12 @@ public class SwitchActivator : MonoBehaviour {
 				playerMovement.ExtendExitPoint(2f);
 			}
 		}
+	}
+
+	IEnumerator WaitForGround(GameObject go){
+		while (!go.GetComponentInParent<PlayerMovement> ().isGrounded ()) {
+			yield return null;
+		}
+		HandlePlayer (go);
 	}
 }
