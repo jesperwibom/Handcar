@@ -33,10 +33,17 @@ public class ControlManager : MonoBehaviour {
 	int controller1Player = 0; //-1 left player, +1 right player, 0 any player
 	int controller2Player = 0; //-1 left player, +1 right player, 0 any player
 
+	/* DEFAULT
 	int controllerDeadzone = 20;
 	int playerSwitchThreshold = 127;
 	int playerBoostThreshold = 20;
 	int playerMaxTravel = 6;
+	*/
+
+	int controllerDeadzone = 20;
+	int playerSwitchThreshold = 300;
+	int playerBoostThreshold = 200;
+	int playerMaxTravel = 150;
 
 	float controller1Force = 0;
 	float controller2Force = 0;
@@ -157,7 +164,7 @@ public class ControlManager : MonoBehaviour {
 
 	void CalculatePlayerForce(){
 		if (controller1 != null) {
-			
+			Debug.Log (player1Values [0]);
 			switch (controller1Player) {
 			case 0:
 				if (player1Values [0] < (player1PreviousValues [0] - controllerDeadzone)) {
@@ -222,11 +229,13 @@ public class ControlManager : MonoBehaviour {
 			//TRACK SWITCH
 			if (player1Values [3] > 0 && player1Values[3] != player1PreviousValues[3]) {
 				player1TrackSwitch.SwitchLeft ();
+				Debug.Log ("TRACK SWITCH LEFT");
 			}
 			player1PreviousValues [3] = player1Values [3];
 
 			if (player1Values [4] > 0 && player1Values[4] != player1PreviousValues[4]) {
 				player1TrackSwitch.SwitchRight ();
+				Debug.Log ("TRACK SWITCH RIGHT");
 			}
 			player1PreviousValues [4] = player1Values [4];
 
@@ -267,13 +276,14 @@ public class ControlManager : MonoBehaviour {
 	}
 
 	IEnumerator WaitForController1Jump(int i){
-		yield return new WaitForSeconds(0.9f);
+		yield return new WaitForSeconds(0.7f);
 
 		controller1BtnRun = false;
 		controller1Btn [i] = false;
 
 		if (!controller1Btn [0] && !controller1Btn [1]) {
 			//Shoot ();
+			player1.GetComponent<PlayerSound>().Honk();
 			Debug.Log("SHOOTING!!!");
 		}
 
