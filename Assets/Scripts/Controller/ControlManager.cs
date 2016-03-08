@@ -46,8 +46,6 @@ public class ControlManager : MonoBehaviour {
 
 	bool[] controller1Btn = { false, false };
 	bool[] controller2Btn = { false, false };
-	bool controller1BtnWait = false;
-	bool controller2BtnWait = false;
 	bool controller1BtnRun = false;
 	bool controller2BtnRun = false;
 
@@ -233,12 +231,25 @@ public class ControlManager : MonoBehaviour {
 			player1PreviousValues [4] = player1Values [4];
 
 			//JUMP
-			if (!controller1BtnRun) {
-				if (player1Values [1] > 0 && player1Values [1] != player1PreviousValues [1]) {
-					
+			if (player1Values [1] > 0 && player1Values [1] != player1PreviousValues [1]) {
+				controller1Btn [0] = true;
+				if (!controller1BtnRun) {
+					controller1BtnRun = true;
+					StartCoroutine (WaitForController1Jump (0));
+				} else if (controller1BtnRun && controller1Btn[1]){
+					player1Movement.Jump();
+					Debug.Log("JUMPING!!!");
 				}
-				if (player1Values [2] > 0 && player1Values [2] != player1PreviousValues [2]) {
+			}
 
+			if (player1Values [2] > 0 && player1Values [2] != player1PreviousValues [2]) {
+				controller1Btn [1] = true;
+				if (!controller1BtnRun) {
+					controller1BtnRun = true;
+					StartCoroutine (WaitForController1Jump (1));
+				} else if (controller1BtnRun && controller1Btn[0]){
+					player1Movement.Jump();
+					Debug.Log("JUMPING!!!");
 				}
 			}
 
@@ -255,9 +266,22 @@ public class ControlManager : MonoBehaviour {
 
 	}
 
-	IEnumerator WaitForController1Jump(){
-		yield return null;
+	IEnumerator WaitForController1Jump(int i){
+		yield return new WaitForSeconds(0.9f);
+
+		controller1BtnRun = false;
+		controller1Btn [i] = false;
+
+		if (!controller1Btn [0] && !controller1Btn [1]) {
+			//Shoot ();
+			Debug.Log("SHOOTING!!!");
+		}
+
+		controller1Btn [0] = false;
+		controller1Btn [1] = false;
+
 	}
+
 
 	IEnumerator WaitForController2Jump(){
 		yield return null;
