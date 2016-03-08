@@ -14,7 +14,7 @@ public class FloatingObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		tempPos.y = tempVal + amplitude * Mathf.Sin (speed * Time.time);
+		tempPos = new Vector3(gameObject.transform.position.x, tempVal + amplitude * Mathf.Sin (speed * Time.time),gameObject.transform.position.z);
 		transform.position = tempPos;
 	}
 	void FixedUpdate(){
