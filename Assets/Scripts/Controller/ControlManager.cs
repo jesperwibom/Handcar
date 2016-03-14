@@ -238,6 +238,7 @@ public class ControlManager : MonoBehaviour {
 			if (player1Values [3] > 0 && player1Values[3] != player1PreviousValues[3]) {
 				player1TrackSwitch.SwitchLeft ();
 				Debug.Log ("TRACK SWITCH LEFT");
+
 			}
 			player1PreviousValues [3] = player1Values [3];
 
@@ -318,15 +319,17 @@ public class ControlManager : MonoBehaviour {
 				player1Movement.ChangeSpeed (0.5f);
 				playerPower.AdjustPower (0.5f);
 			}
-			if(keyboardControl && Input.GetKeyDown("up")){
+			if(keyboardControl && Input.GetKeyDown("up")  && playerPower.enoughEnergy("shift")){
 				player1TrackSwitch.SwitchLeft();
+				playerPower.ShiftAction ();
 			}
-			if(keyboardControl && Input.GetKeyDown("down")){
+			if(keyboardControl && Input.GetKeyDown("down")  && playerPower.enoughEnergy("shift")){
 				player1TrackSwitch.SwitchRight();
+				playerPower.ShiftAction ();
 			}
-			if(keyboardControl && Input.GetKeyDown("space") && playerPower.getPower() > playerPower.getJumpCost()){
+			if(keyboardControl && Input.GetKeyDown("space") && playerPower.enoughEnergy("jump")){
 				player1Movement.Jump();
-				playerPower.JumpAdjust();
+				playerPower.JumpAction();
 			}
 		}
 
