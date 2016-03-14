@@ -4,6 +4,8 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
 
 	public bool playerActive = true;
+	PlayerPower playerPower;
+	GameObject player;
 
 	[Header("Speed variables")]
 	public float minSpeed = 0.1f;
@@ -29,6 +31,9 @@ public class PlayerMovement : MonoBehaviour {
 
 
 	void Start(){
+		player = GameObject.Find ("player1");
+		playerPower = player.GetComponent<PlayerPower> ();
+
 		enterPoint = gameObject.transform.position;
 		exitPoint = new Vector3 (gameObject.transform.position.x + 1, gameObject.transform.position.y, gameObject.transform.position.z);
 	}
@@ -144,7 +149,9 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void Jump(){
 		if (grounded) {
+			
 			StartCoroutine (Jumping ());
+
 		}
 	}
 
@@ -155,6 +162,7 @@ public class PlayerMovement : MonoBehaviour {
 	IEnumerator Jumping(){
 
 		grounded = false;
+
 
 		while (model.transform.position.y < (jumpHeight - 0.15f)) {
 			float step = jumpForce * Time.deltaTime * (jumpHeight - model.transform.position.y);
@@ -168,6 +176,7 @@ public class PlayerMovement : MonoBehaviour {
 		}
 			
 		grounded = true;
+
 	}
 
 

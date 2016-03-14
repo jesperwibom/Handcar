@@ -16,6 +16,8 @@ public class ControlManager : MonoBehaviour {
 	PlayerMovement player1Movement;
 	PlayerMovement player2Movement;
 
+	PlayerPower playerPower;
+
 	PlayerTrackSwitch player1TrackSwitch;
 	PlayerTrackSwitch player2TrackSwitch;
 
@@ -49,6 +51,7 @@ public class ControlManager : MonoBehaviour {
 	float controller2Force = 0;
 
 	float forceModifier = 0.001f;
+	float powerModifier = 0.001f;
 	int boostBonusForce = 15;
 
 	bool[] controller1Btn = { false, false };
@@ -64,6 +67,9 @@ public class ControlManager : MonoBehaviour {
 	}
 
 	void Start(){
+		playerPower = player1.GetComponent<PlayerPower> ();
+		Debug.Log ("player power is " +playerPower);
+
 		if (player1active) {
 			player1Movement = player1.GetComponent<PlayerMovement> ();
 			player1TrackSwitch = player1.GetComponent<PlayerTrackSwitch> ();
@@ -223,6 +229,8 @@ public class ControlManager : MonoBehaviour {
 			//SPEED
 			if(controller1Force > 0){
 				player1Movement.ChangeSpeed((float)controller1Force * forceModifier);
+
+				playerPower.AdjustPower ((float)controller1Force);
 				controller1Force = 0;
 			}
 
@@ -308,6 +316,7 @@ public class ControlManager : MonoBehaviour {
 		if (player1active) {
 			if(keyboardControl && Input.GetKeyDown("right")){
 				player1Movement.ChangeSpeed (0.5f);
+				playerPower.AdjustPower (0.5f);
 			}
 			if(keyboardControl && Input.GetKeyDown("up")){
 				player1TrackSwitch.SwitchLeft();
@@ -315,8 +324,9 @@ public class ControlManager : MonoBehaviour {
 			if(keyboardControl && Input.GetKeyDown("down")){
 				player1TrackSwitch.SwitchRight();
 			}
-			if(keyboardControl && Input.GetKeyDown("space")){
+			if(keyboardControl && Input.GetKeyDown("space") && playerPower.getPower() > playerPower.getJumpCost()){
 				player1Movement.Jump();
+				playerPower.JumpAdjust();
 			}
 		}
 
