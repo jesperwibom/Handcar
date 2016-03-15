@@ -45,6 +45,7 @@ GameObject:
   - 114: {fileID: 11403484}
   - 82: {fileID: 8230234}
   - 114: {fileID: 11487698}
+  - 114: {fileID: 11407060}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player1
@@ -1181,6 +1182,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackSwitch: {fileID: 11413212}
+--- !u!114 &11407060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26985a418952844ff9982daf1ccc60c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerSlider: {fileID: 0}
+  energyText: {fileID: 0}
+  jumpCost: 50
+  shiftCost: 20
 --- !u!114 &11413212
 MonoBehaviour:
   m_ObjectHideFlags: 1
