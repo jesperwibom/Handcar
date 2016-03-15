@@ -319,17 +319,17 @@ public class ControlManager : MonoBehaviour {
 				player1Movement.ChangeSpeed (0.5f);
 				playerPower.AdjustPower (0.5f);
 			}
-			if(keyboardControl && Input.GetKeyDown("up")  && playerPower.enoughEnergy("shift")){
-				player1TrackSwitch.SwitchLeft();
-				playerPower.ShiftAction ();
+			if(keyboardControl && Input.GetKeyDown("up")  /*&& playerPower.enoughEnergy("shift")*/){
+				player1Movement.SwitchLeft();
+				//playerPower.ShiftAction ();
 			}
-			if(keyboardControl && Input.GetKeyDown("down")  && playerPower.enoughEnergy("shift")){
-				player1TrackSwitch.SwitchRight();
-				playerPower.ShiftAction ();
+			if(keyboardControl && Input.GetKeyDown("down")  /*&& playerPower.enoughEnergy("shift")*/){
+				player1Movement.SwitchRight();
+				//playerPower.ShiftAction ();
 			}
-			if(keyboardControl && Input.GetKeyDown("space") && playerPower.enoughEnergy("jump")){
+			if(keyboardControl && Input.GetKeyDown("space") /*&& playerPower.enoughEnergy("jump")*/){
 				player1Movement.Jump();
-				playerPower.JumpAction();
+				//playerPower.JumpAction();
 			}
 		}
 

@@ -9,6 +9,7 @@ TagManager:
   - Player1Collider
   - Player2Collider
   - checkpoint
+  - ground
   layers:
   - Default
   - TransparentFX

@@ -7,7 +7,15 @@ public class RotateToTravelDirection : MonoBehaviour {
 
 	void FixedUpdate () {
 		if (pm.playerActive) {
-			transform.LookAt (new Vector3 (pm.GetExitPoint ().x, transform.position.y, pm.GetExitPoint ().z));
+			if (pm.isGrounded()) {
+				transform.LookAt (new Vector3 (pm.GetExitPoint ().x, transform.position.y, pm.GetExitPoint ().z));
+			} else {
+				if (pm.floatSwitch == 0) {
+					transform.LookAt (new Vector3 (pm.GetExitPoint ().x, transform.position.y, pm.GetExitPoint ().z));
+				} else if (pm.floatSwitch == -1 || pm.floatSwitch == 1) {
+					transform.LookAt (new Vector3 (pm.GetExitPoint ().x, transform.position.y, transform.position.z));
+				}
+			}
 		}
 	}
 }

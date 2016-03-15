@@ -21,7 +21,7 @@ public class RaycastGround : MonoBehaviour {
 		if (Physics.Raycast (transform.position, (Vector3.down), out hit)) {
 			hitDistance = hit.distance;
 			//print (hitDistance + " to " + hit.collider.gameObject.name);
-			if ((hit.collider.gameObject.name == "Ground" || hit.collider.gameObject.tag == "checkpoint")&& pm.isGrounded() == true) {
+			if ((hit.collider.gameObject.name == "Ground" || hit.collider.gameObject.tag == "ground")&& pm.isGrounded() == true) {
 				pm.Crash ("ground");
 			}
 		}

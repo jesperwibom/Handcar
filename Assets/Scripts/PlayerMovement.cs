@@ -24,11 +24,18 @@ public class PlayerMovement : MonoBehaviour {
 	bool grounded = true;
 	bool crashed = false;
 
+	public int floatSwitch = 0;
+
 	[Header("GUI variables")]
 	public GameObject trackIndicator;
 
 	private Vector3 enterPoint;
 	private Vector3 exitPoint;
+
+
+	public TrackSwitch trackSwitch;
+
+
 
 
 	void Start(){
@@ -42,9 +49,11 @@ public class PlayerMovement : MonoBehaviour {
 	void Update(){
 		//Check if exitPoint reached : extend exitPoint
 		//Vector3 point = new Vector3(exitPoint.x+1f,exitPoint.y,exitPoint.z);
-		if (gameObject.transform.position == exitPoint) {
+		Vector3 target = new Vector3 (exitPoint.x, exitPoint.y, transform.position.z);
+		if (gameObject.transform.position == target) {
 			ExtendExitPoint (2f);
 		}
+
 
 	}
 
@@ -52,6 +61,20 @@ public class PlayerMovement : MonoBehaviour {
 		CorrectSpeed ();
 		Move ();
 		CorrectPosition ();
+
+		switch (floatSwitch) {
+		case 0:
+
+			break;
+		case -1:
+			transform.position = new Vector3(transform.position.x,transform.position.y,transform.position.z + 0.01f);
+			break;
+		case 1:
+			transform.position = new Vector3(transform.position.x,transform.position.y,transform.position.z - 0.01f);
+			break;
+		default:
+			break;
+		}
 	}
 
 	void CorrectSpeed(){
@@ -73,8 +96,27 @@ public class PlayerMovement : MonoBehaviour {
 	void Move(){
 		
 		float step = speed * Time.deltaTime;
+		Vector3 target;
+		target = exitPoint;
 		if (!crashed) {
-			transform.position = Vector3.MoveTowards (transform.position, exitPoint, step);
+			if (grounded) {
+				target = exitPoint;
+			} else {
+				switch (floatSwitch) {
+				case 0:
+					target = exitPoint;
+					break;
+				case -1:
+					target = new Vector3 (exitPoint.x, exitPoint.y, transform.position.z);
+					break;
+				case 1:
+					target = new Vector3 (exitPoint.x, exitPoint.y, transform.position.z);
+					break;
+				default:
+					break;
+				}
+			}
+			transform.position = Vector3.MoveTowards (transform.position, target, step);
 		}
 
 	}
@@ -155,6 +197,9 @@ public class PlayerMovement : MonoBehaviour {
 			
 			StartCoroutine (Jumping ());
 
+		} else {
+			StopAllCoroutines ();
+			StartCoroutine (Landing ());
 		}
 	}
 
@@ -163,7 +208,6 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	IEnumerator Jumping(){
-
 		grounded = false;
 
 
@@ -172,15 +216,48 @@ public class PlayerMovement : MonoBehaviour {
 			model.transform.position = Vector3.MoveTowards (model.transform.position, new Vector3 (transform.position.x, transform.position.y + jumpHeight, transform.position.z), step);
 			yield return null;
 		}
+		/*
 		while (model.transform.position.y > transform.position.y) {
 			float step = gravity * Time.deltaTime  * (jumpHeight - model.transform.position.y);
 			model.transform.position = Vector3.MoveTowards (model.transform.position, transform.position, step);
 			yield return null;
 		}
 			
-		grounded = true;
+		grounded = true;*/
 
 	}
+
+	IEnumerator Landing(){
+		while (model.transform.position.y > transform.position.y) {
+			float step = gravity * Time.deltaTime  * (jumpHeight - model.transform.position.y);
+			model.transform.position = Vector3.MoveTowards (model.transform.position, transform.position, step);
+			yield return null;
+		}
+
+		grounded = true;
+		floatSwitch = 0;
+	}
+
+
+
+
+	public void SwitchLeft(){
+		if (grounded) {
+			trackSwitch.Switch (-1);
+		} else {
+			floatSwitch = -1;
+		}
+	}
+
+	public void SwitchRight(){
+		if (grounded) {
+			trackSwitch.Switch (1);
+		} else {
+			floatSwitch = 1;
+		}
+	}
+
+
 
 
 	public void Crash(string type){
