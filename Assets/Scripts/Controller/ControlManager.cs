@@ -4,6 +4,7 @@ using Uniduino;
 
 public class ControlManager : MonoBehaviour {
 
+
 	public Arduino arduino1;
 	public Arduino arduino2;
 
@@ -67,6 +68,8 @@ public class ControlManager : MonoBehaviour {
 	}
 
 	void Start(){
+
+
 		playerPower = player1.GetComponent<PlayerPower> ();
 		Debug.Log ("player power is " +playerPower);
 
@@ -318,6 +321,9 @@ public class ControlManager : MonoBehaviour {
 			if(keyboardControl && Input.GetKeyDown("right")){
 				player1Movement.ChangeSpeed (0.5f);
 				playerPower.AdjustPower (0.5f);
+
+
+
 			}
 			if(keyboardControl && Input.GetKeyDown("up")  && playerPower.enoughEnergy("shift")){
 				player1TrackSwitch.SwitchLeft();
