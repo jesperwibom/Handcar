@@ -66,7 +66,7 @@ public class TimeManager : MonoBehaviour {
 
 	IEnumerator Timer(){
 		timerIsRunning = true;
-		while (secondsLeft > 0) {
+		while (secondsLeft > 0 && timerIsRunning == true) {
 			secondsLeft--;
 			counter.text = secondsLeft.ToString();
 			yield return new WaitForSeconds(1);

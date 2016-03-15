@@ -407,9 +407,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeMaterial: {fileID: 2100000, guid: 90303bad9f5d644098db48eea51255d3, type: 2}
   inactiveMaterial: {fileID: 2100000, guid: 97027fb8c1c8445c4b4e3b9dc0d76a4d, type: 2}
+  ll: {fileID: 0}
+  lc: {fileID: 0}
+  lr: {fileID: 0}
   cl: {fileID: 145498}
   cc: {fileID: 160134}
   cr: {fileID: 0}
+  rl: {fileID: 0}
+  rc: {fileID: 0}
+  rr: {fileID: 0}
 --- !u!114 &11495060
 MonoBehaviour:
   m_ObjectHideFlags: 1

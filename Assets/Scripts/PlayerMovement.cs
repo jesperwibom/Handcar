@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	public bool playerActive = true;
 	PlayerPower playerPower;
-	GameObject player;
+	TimeManager tm;
 
 	[Header("Speed variables")]
 	public float minSpeed = 0.1f;
@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float gravity = 2.5f;
 
 	bool grounded = true;
+	bool crashed = false;
 
 	[Header("GUI variables")]
 	public GameObject trackIndicator;
@@ -31,8 +32,8 @@ public class PlayerMovement : MonoBehaviour {
 
 
 	void Start(){
-		player = GameObject.Find ("player1");
-		playerPower = player.GetComponent<PlayerPower> ();
+
+		playerPower = gameObject.GetComponent<PlayerPower> ();
 
 		enterPoint = gameObject.transform.position;
 		exitPoint = new Vector3 (gameObject.transform.position.x + 1, gameObject.transform.position.y, gameObject.transform.position.z);
@@ -72,7 +73,9 @@ public class PlayerMovement : MonoBehaviour {
 	void Move(){
 		
 		float step = speed * Time.deltaTime;
-		transform.position = Vector3.MoveTowards(transform.position, exitPoint, step);
+		if (!crashed) {
+			transform.position = Vector3.MoveTowards (transform.position, exitPoint, step);
+		}
 
 	}
 
@@ -186,11 +189,6 @@ public class PlayerMovement : MonoBehaviour {
 		Rigidbody rb = cart.GetComponent<Rigidbody> ();
 		playerActive = false;
 
-		//model.transform.parent = null;
-		cart.transform.parent = null;
-
-
-
 		rb.useGravity = true;
 		rb.isKinematic = false;
 		if (type == "ground") {
@@ -199,7 +197,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (type == "wall") {
 			StartCoroutine (WallCrash (cart));
 		}
-
+		cart.transform.parent = null;
 	}
 
 	IEnumerator GroundCrash(GameObject go){
