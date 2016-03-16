@@ -4777,6 +4777,18 @@ Prefab:
       propertyPath: m_Name
       value: Cart
       objectReference: {fileID: 0}
+    - target: {fileID: 11409838, guid: 5a7d5ee3de1694660809358699f238a8, type: 2}
+      propertyPath: minSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6472742, guid: 5a7d5ee3de1694660809358699f238a8, type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6472742, guid: 5a7d5ee3de1694660809358699f238a8, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a7d5ee3de1694660809358699f238a8, type: 2}
   m_IsPrefabParent: 0
