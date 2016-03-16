@@ -25,6 +25,7 @@ public class Controller {
 	float fadeSpeed = 200f;
 	bool fadeSync = false;
 
+
 	bool blinkLeftLed = false;
 	bool blinkRightLed = false;
 	float blinkSpeed = 200f;

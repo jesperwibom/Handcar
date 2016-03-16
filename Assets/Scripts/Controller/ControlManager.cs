@@ -6,35 +6,31 @@ public class ControlManager : MonoBehaviour {
 
 
 	public Arduino arduino1;
-	public Arduino arduino2;
+	//public Arduino arduino2;
 
 	public GameObject player1;
-	public GameObject player2;
+	//public GameObject player2;
 
 	Controller controller1;
-	Controller controller2;
+	//Controller controller2;
 
 	PlayerMovement player1Movement;
-	PlayerMovement player2Movement;
+	//PlayerMovement player2Movement;
 
-	PlayerPower playerPower;
-
-	PlayerTrackSwitch player1TrackSwitch;
-	PlayerTrackSwitch player2TrackSwitch;
 
 	int[] player1Values = {512,0,0,0,0};
-	int[] player2Values = {512,0,0,0,0};
+	//int[] player2Values = {512,0,0,0,0};
 	int[] player1PreviousValues = {512,0,0,0,0};
-	int[] player2PreviousValues = {512,0,0,0,0};
+	//int[] player2PreviousValues = {512,0,0,0,0};
 
 	//will not be public in final game
 	public bool gameRunning = true;
 	public bool keyboardControl = false;
 	public bool player1active;
-	public bool player2active;
+	//public bool player2active;
 
 	int controller1Player = 0; //-1 left player, +1 right player, 0 any player
-	int controller2Player = 0; //-1 left player, +1 right player, 0 any player
+	//int controller2Player = 0; //-1 left player, +1 right player, 0 any player
 
 	/* DEFAULT
 	int controllerDeadzone = 20;
@@ -56,9 +52,9 @@ public class ControlManager : MonoBehaviour {
 	int boostBonusForce = 15;
 
 	bool[] controller1Btn = { false, false };
-	bool[] controller2Btn = { false, false };
+	//bool[] controller2Btn = { false, false };
 	bool controller1BtnRun = false;
-	bool controller2BtnRun = false;
+	//bool controller2BtnRun = false;
 
 
 	//===================================================//
@@ -70,24 +66,17 @@ public class ControlManager : MonoBehaviour {
 	void Start(){
 
 
-		playerPower = player1.GetComponent<PlayerPower> ();
-		Debug.Log ("player power is " +playerPower);
+
 
 		if (player1active) {
 			player1Movement = player1.GetComponent<PlayerMovement> ();
-			player1TrackSwitch = player1.GetComponent<PlayerTrackSwitch> ();
 		}
-		if (player2active) {
-			player2Movement = player2.GetComponent<PlayerMovement> ();
-			player2TrackSwitch = player2.GetComponent<PlayerTrackSwitch> ();
-		}
+
 
 		if (arduino1) {
 			controller1 = new Controller (arduino1);
 		}
-		if (arduino2) {
-			controller2 = new Controller (arduino1);
-		}
+
 
 	}
 
@@ -133,18 +122,14 @@ public class ControlManager : MonoBehaviour {
 		if (controller1 != null) {
 			player1Values = controller1.GetInput ();
 		}
-		if (controller2 != null) {
-			player2Values = controller2.GetInput ();
-		}
+
 	}
 
 	void UpdateControllers(){
 		if (controller1 != null) {
 			controller1.UpdateLeds ();
 		}
-		if (controller2 != null) {
-			controller2.UpdateLeds ();
-		}
+
 	}
 
 	void SetControllers(){
@@ -165,9 +150,6 @@ public class ControlManager : MonoBehaviour {
 
 
 
-		if (controller2 != null) {
-			
-		}
 	}
 
 
@@ -219,9 +201,6 @@ public class ControlManager : MonoBehaviour {
 
 
 
-		if (controller2 != null) {
-
-		}
 	}
 
 
@@ -232,21 +211,19 @@ public class ControlManager : MonoBehaviour {
 			//SPEED
 			if(controller1Force > 0){
 				player1Movement.ChangeSpeed((float)controller1Force * forceModifier);
-
-				playerPower.AdjustPower ((float)controller1Force);
 				controller1Force = 0;
 			}
 
 			//TRACK SWITCH
 			if (player1Values [3] > 0 && player1Values[3] != player1PreviousValues[3]) {
-				player1TrackSwitch.SwitchLeft ();
+				player1Movement.SwitchLeft ();
 				Debug.Log ("TRACK SWITCH LEFT");
 
 			}
 			player1PreviousValues [3] = player1Values [3];
 
 			if (player1Values [4] > 0 && player1Values[4] != player1PreviousValues[4]) {
-				player1TrackSwitch.SwitchRight ();
+				player1Movement.SwitchRight ();
 				Debug.Log ("TRACK SWITCH RIGHT");
 			}
 			player1PreviousValues [4] = player1Values [4];
@@ -281,10 +258,6 @@ public class ControlManager : MonoBehaviour {
 
 
 
-
-		if (controller2 != null) {
-		}
-
 	}
 
 	IEnumerator WaitForController1Jump(int i){
@@ -311,7 +284,7 @@ public class ControlManager : MonoBehaviour {
 
 	public void ResetControllerStates(){
 		controller1Player = 0;
-		controller2Player = 0;
+
 	}
 
 
@@ -320,7 +293,7 @@ public class ControlManager : MonoBehaviour {
 		if (player1active) {
 			if(keyboardControl && Input.GetKeyDown("right")){
 				player1Movement.ChangeSpeed (0.5f);
-				playerPower.AdjustPower (0.5f);
+				//playerPower.AdjustPower (0.5f);
 
 
 
@@ -340,21 +313,6 @@ public class ControlManager : MonoBehaviour {
 		}
 
 
-		//PLAYER 2
-		if (player2active) {
-			if (keyboardControl && Input.GetKeyDown ("d")) {
-				player2Movement.ChangeSpeed (0.5f);
-			}
-			if (keyboardControl && Input.GetKeyDown ("w")) {
-				player2TrackSwitch.SwitchLeft ();
-			}
-			if (keyboardControl && Input.GetKeyDown ("s")) {
-				player2TrackSwitch.SwitchRight ();
-			}
-			if (keyboardControl && Input.GetKeyDown ("q")) {
-				player2Movement.Jump ();
-			}
-		}
 	}
 
 }

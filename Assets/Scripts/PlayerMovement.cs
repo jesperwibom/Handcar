@@ -175,6 +175,7 @@ public class PlayerMovement : MonoBehaviour {
 	public void ChangeSpeed(float speedChange){
 		if (grounded) {
 			speed += speedChange;
+			playerPower.AdjustPower (speedChange);
 		}
 	}
 
@@ -194,17 +195,13 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void Jump(){
 		if (grounded) {
-			
-			StartCoroutine (Jumping ());
-
+			if (playerPower.enoughEnergy ("jump")) {
+				StartCoroutine (Jumping ());
+			}
 		} else {
 			StopAllCoroutines ();
 			StartCoroutine (Landing ());
 		}
-	}
-
-	public void JumpSwitch(int state){
-		Debug.Log ("JUMP Switch!");
 	}
 
 	IEnumerator Jumping(){
@@ -243,7 +240,9 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void SwitchLeft(){
 		if (grounded) {
-			trackSwitch.Switch (-1);
+			if (playerPower.enoughEnergy ("shift")) {
+				trackSwitch.Switch (-1);
+			}
 		} else {
 			floatSwitch = -1;
 		}
@@ -251,7 +250,9 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void SwitchRight(){
 		if (grounded) {
-			trackSwitch.Switch (1);
+			if (playerPower.enoughEnergy ("shift")) {
+				trackSwitch.Switch (1);
+			}
 		} else {
 			floatSwitch = 1;
 		}
