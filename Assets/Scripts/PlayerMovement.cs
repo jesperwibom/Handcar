@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour {
 	public bool playerActive = true;
 	PlayerPower playerPower;
 	TimeManager tm;
+	public ParticleSystem burst;
+
 
 	[Header("Speed variables")]
 	public float minSpeed = 0.1f;
@@ -26,6 +28,13 @@ public class PlayerMovement : MonoBehaviour {
 
 	public int floatSwitch = 0;
 
+	[Header("Soundeffects")]
+	public AudioSource flyingSound;
+	public AudioSource touchGroundSound;
+	public AudioSource crashSound;
+	public AudioSource failSound;
+
+
 	[Header("GUI variables")]
 	public GameObject trackIndicator;
 
@@ -39,6 +48,10 @@ public class PlayerMovement : MonoBehaviour {
 
 
 	void Start(){
+
+	
+		var em = burst.emission;
+		em.enabled = false;
 
 		playerPower = gameObject.GetComponent<PlayerPower> ();
 
@@ -206,8 +219,15 @@ public class PlayerMovement : MonoBehaviour {
 
 	IEnumerator Jumping(){
 		grounded = false;
+		if (flyingSound != null) {
+			touchGroundSound.Play ();
+			flyingSound.Play ();
+		}
+		if (burst != null) {
+			var em = burst.emission;
+			em.enabled = true;
 
-
+		}
 		while (model.transform.position.y < (jumpHeight - 0.15f)) {
 			float step = jumpForce * Time.deltaTime * (jumpHeight - model.transform.position.y);
 			model.transform.position = Vector3.MoveTowards (model.transform.position, new Vector3 (transform.position.x, transform.position.y + jumpHeight, transform.position.z), step);
@@ -233,6 +253,12 @@ public class PlayerMovement : MonoBehaviour {
 
 		grounded = true;
 		floatSwitch = 0;
+		var em = burst.emission;
+		em.enabled = false;
+		if (flyingSound != null) {
+			flyingSound.Stop ();
+			touchGroundSound.Play ();
+		}
 	}
 
 
@@ -270,6 +296,7 @@ public class PlayerMovement : MonoBehaviour {
 		rb.useGravity = true;
 		rb.isKinematic = false;
 		if (type == "ground") {
+			
 			StartCoroutine (GroundCrash (cart));
 		}
 		if (type == "wall") {
@@ -285,6 +312,11 @@ public class PlayerMovement : MonoBehaviour {
 			yield return null;
 		
 		}
+		if (flyingSound.isPlaying) {
+			flyingSound.Stop ();
+		}
+		crashSound.Play ();
+		failSound.Play ();
 		go.GetComponent<Rigidbody>().AddForce (Vector3.up * 400f);
 		go.GetComponent<Rigidbody>().AddForce (Vector3.right * 100f);
 		go.GetComponent<Rigidbody>().AddForce (Vector3.forward * 60f);
@@ -297,6 +329,11 @@ public class PlayerMovement : MonoBehaviour {
 			yield return null;
 
 		}
+		if (flyingSound.isPlaying) {
+			flyingSound.Stop ();
+		}
+		crashSound.Play ();
+		failSound.Play ();
 		go.GetComponent<Rigidbody>().AddForce (Vector3.up * 140f);
 		go.GetComponent<Rigidbody>().AddForce (Vector3.forward * 100f);
 		Destroy (gameObject);

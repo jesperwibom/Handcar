@@ -7,10 +7,11 @@ public class PlayerPower : MonoBehaviour {
 	public Slider powerSlider;
 	[Header("Action energy cost")]
 	public float delayTime = 1.8f;
+
 	public float jumpCost = 30f;
 	public float shiftCost = 10f;
 
-	private float targetPower; 
+	private float targetPower;
 	private float currentPower;
 
 	float timeLimit = 5.0f;
@@ -26,7 +27,7 @@ public class PlayerPower : MonoBehaviour {
 		pm = gameObject.GetComponent<PlayerMovement> ();
 
 	}
-	
+
 	// Update is called once per frame
 	void Update() {
 		if (!pm.isGrounded ()) {
@@ -34,7 +35,7 @@ public class PlayerPower : MonoBehaviour {
 				targetPower = currentPower;
 				jumpCheck = true;
 			}
-			Debug.Log ("Flying power");
+
 			targetPower -= 0.15f;
 			if (currentPower <= 0) {
 				pm.Jump ();
@@ -48,7 +49,7 @@ public class PlayerPower : MonoBehaviour {
 		} else if (currentPower < targetPower) {
 			powerSlider.value += 0.1f;
 		}
-			
+
 		timeLimit -= Time.deltaTime;
 
 		// Deplate energy if player's been still for too long
@@ -76,7 +77,7 @@ public class PlayerPower : MonoBehaviour {
 		return currentPower;
 
 	}
-	 
+
 	// Method for controlmanager to check if player has enough energy to perform selected action
 	public bool enoughEnergy(string action){
 		bool enough = false;
