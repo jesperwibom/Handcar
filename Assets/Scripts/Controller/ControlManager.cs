@@ -17,6 +17,7 @@ public class ControlManager : MonoBehaviour {
 	PlayerMovement player1Movement;
 	//PlayerMovement player2Movement;
 
+	public GameManager gm;
 
 	int[] player1Values = {512,0,0,0,0};
 	//int[] player2Values = {512,0,0,0,0};
@@ -64,7 +65,6 @@ public class ControlManager : MonoBehaviour {
 	}
 
 	void Start(){
-
 
 
 
@@ -293,23 +293,23 @@ public class ControlManager : MonoBehaviour {
 		if (player1active) {
 			if(keyboardControl && Input.GetKeyDown("right")){
 				player1Movement.ChangeSpeed (0.5f);
-				//playerPower.AdjustPower (0.5f);
-
 
 
 			}
-			if(keyboardControl && Input.GetKeyDown("up")  /*&& playerPower.enoughEnergy("shift")*/){
+			if(keyboardControl && Input.GetKeyDown("up")){
 				player1Movement.SwitchLeft();
-				//playerPower.ShiftAction ();
 			}
-			if(keyboardControl && Input.GetKeyDown("down")  /*&& playerPower.enoughEnergy("shift")*/){
+			if(keyboardControl && Input.GetKeyDown("down")){
 				player1Movement.SwitchRight();
-				//playerPower.ShiftAction ();
 			}
-			if(keyboardControl && Input.GetKeyDown("space") /*&& playerPower.enoughEnergy("jump")*/){
+			if(keyboardControl && Input.GetKeyDown("space")){
 				player1Movement.Jump();
-				//playerPower.JumpAction();
 			}
+
+			if(keyboardControl && Input.GetKeyDown("r")){
+				gm.Respawn();
+			}
+
 		}
 
 

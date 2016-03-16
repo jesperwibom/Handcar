@@ -7,8 +7,8 @@ public class PlayerPower : MonoBehaviour {
 	public Slider powerSlider;
 	[Header("Action energy cost")]
 	public float delayTime = 1.8f;
-	float jumpCost = 30f;
-	float shiftCost = 10f;
+	public float jumpCost = 30f;
+	public float shiftCost = 10f;
 
 	private float targetPower; 
 	private float currentPower;
@@ -37,7 +37,7 @@ public class PlayerPower : MonoBehaviour {
 			Debug.Log ("Flying power");
 			targetPower -= 0.15f;
 			if (currentPower <= 0) {
-				pm.Crash ("ground");
+				pm.Jump ();
 			}
 		} else {
 			jumpCheck = false;

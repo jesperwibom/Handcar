@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11455438}
   m_Layer: 0
   m_Name: CheckPoint - Goal
-  m_TagString: checkpoint
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +42,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 167596}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: 0, z: 0}
+  m_LocalPosition: {x: -2.4824495, y: 0.17519474, z: -2.6457577}
   m_LocalScale: {x: 1, y: 4, z: 10}
   m_Children:
   - {fileID: 486066}
@@ -133,6 +133,7 @@ MonoBehaviour:
   goalPoint: 1
   refillSeconds: 20
   tm: {fileID: 0}
+  gm: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

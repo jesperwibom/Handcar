@@ -282,7 +282,6 @@ public class PlayerMovement : MonoBehaviour {
 		go.GetComponent<Rigidbody>().AddForce (Vector3.down * 300f);
 		go.GetComponent<Rigidbody>().AddForce (Vector3.right * 100f);
 		while (go.transform.position.y > -0.3f) {
-			Debug.Log (go.transform.position.y);
 			yield return null;
 		
 		}
@@ -295,7 +294,6 @@ public class PlayerMovement : MonoBehaviour {
 	IEnumerator WallCrash(GameObject go){
 		go.GetComponent<Rigidbody>().AddForce (Vector3.left * 200f);
 		while (go.transform.position.y > -0.2f) {
-			Debug.Log (go.transform.position.y);
 			yield return null;
 
 		}

@@ -107,7 +107,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 400784}
   - 114: {fileID: 11409838}
-  - 114: {fileID: 11475966}
   - 82: {fileID: 8272946}
   - 114: {fileID: 11424134}
   - 114: {fileID: 11464132}
@@ -165,7 +164,7 @@ GameObject:
   - 54: {fileID: 5424372}
   - 64: {fileID: 6472742}
   m_Layer: 0
-  m_Name: Cone001
+  m_Name: Cart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -987,7 +986,9 @@ MonoBehaviour:
   jumpHeight: 2.2
   jumpForce: 2
   gravity: 3.2
+  floatSwitch: 0
   trackIndicator: {fileID: 159820}
+  trackSwitch: {fileID: 11429064}
 --- !u!114 &11424134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1058,21 +1059,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerSlider: {fileID: 0}
-  energyText: {fileID: 0}
-  jumpCost: 50
-  shiftCost: 20
---- !u!114 &11475966
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 159686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21fec83a359ce4ef892c07069809cce4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trackSwitch: {fileID: 11429064}
+  delayTime: 1.5
+  jumpCost: 10
+  shiftCost: 10
 --- !u!198 &19896678
 ParticleSystem:
   m_ObjectHideFlags: 1
