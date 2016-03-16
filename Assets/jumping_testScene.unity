@@ -4816,6 +4816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7fd85afe4f9a47c88116819df9d5a62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 0}
 --- !u!4 &1528854210
 Transform:
   m_ObjectHideFlags: 0
@@ -5183,6 +5184,10 @@ Prefab:
     - target: {fileID: 468164, guid: b644c1db55f7d4d7f96ca673222046c6, type: 2}
       propertyPath: m_LocalScale.z
       value: 8.734571
+      objectReference: {fileID: 0}
+    - target: {fileID: 108084, guid: b644c1db55f7d4d7f96ca673222046c6, type: 2}
+      propertyPath: m_TagString
+      value: ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b644c1db55f7d4d7f96ca673222046c6, type: 2}
@@ -5700,6 +5705,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerSlider: {fileID: 226545665}
   delayTime: 1.8
+  jumpCost: 5
+  shiftCost: 2
 --- !u!114 &1791148483
 MonoBehaviour:
   m_ObjectHideFlags: 0
