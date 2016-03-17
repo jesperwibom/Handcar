@@ -265,6 +265,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
 	public void SwitchLeft(){
+		Debug.Log ("SWITCHING LEFT!");
 		if (grounded) {
 			if (playerPower.enoughEnergy ("shift")) {
 				trackSwitch.Switch (-1);
@@ -275,6 +276,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void SwitchRight(){
+		Debug.Log ("SWITCHING RIGHT!");
 		if (grounded) {
 			if (playerPower.enoughEnergy ("shift")) {
 				trackSwitch.Switch (1);

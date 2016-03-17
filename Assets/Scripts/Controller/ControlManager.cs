@@ -58,6 +58,10 @@ public class ControlManager : MonoBehaviour {
 	//bool controller2BtnRun = false;
 
 
+	bool jumpRelease = true;
+	bool trackSwitchLeft = false;
+	bool trackSwitchRight = false;
+
 	//===================================================//
 
 	void Awake(){
@@ -155,7 +159,7 @@ public class ControlManager : MonoBehaviour {
 
 	void CalculatePlayerForce(){
 		if (controller1 != null) {
-			Debug.Log (player1Values [0]);
+			//Debug.Log (player1Values [0]);
 			switch (controller1Player) {
 			case 0:
 				if (player1Values [0] < (player1PreviousValues [0] - controllerDeadzone)) {
@@ -214,6 +218,58 @@ public class ControlManager : MonoBehaviour {
 				controller1Force = 0;
 			}
 
+			//SWITCH AND JUMP
+			//if both player pull the switch, then JUMP
+
+			if (jumpRelease) {
+				if (player1Values [3] > 0 && player1Values [4] > 0) {
+					player1Movement.Jump ();
+					jumpRelease = false;
+					trackSwitchLeft = false;
+					trackSwitchRight = false;
+				} else if (player1Values [3] > 0) {
+					trackSwitchLeft = true;
+				} else if (player1Values [4] > 0) {
+					trackSwitchRight = true;
+				}
+			}
+
+			if (player1Values [3] == 0 && player1Values [4] == 0) {
+				jumpRelease = true;
+				if (trackSwitchLeft) {
+					player1Movement.SwitchLeft ();
+					trackSwitchLeft = false;
+				} else if (trackSwitchRight) {
+					player1Movement.SwitchRight ();
+					trackSwitchRight = false;
+				}
+			}
+					/*
+			if (!player1Movement.isGrounded() && jumpRelease) {
+				if (player1Values [3] > 0 && player1Values [4] > 0) {
+					player1Movement.Jump ();
+					jumpRelease = false;
+				}
+			}
+			*/
+
+			/*
+			if ((player1Values [3] > 0 && player1Values [3] != player1PreviousValues [3]) && (player1Values [4] > 0 && player1Values [4] != player1PreviousValues [4])) {
+				player1Movement.Jump ();
+			}
+
+			if (player1Values [3] != player1PreviousValues [3]) {
+				player1PreviousValues [3] = player1Values [3];
+			}
+
+			if (player1Values [4] != player1PreviousValues [4]) {
+				player1PreviousValues [4] = player1Values [4];
+			}
+			*/
+			
+
+
+			/* OLD JUMP AND SWITCH
 			//TRACK SWITCH
 			if (player1Values [3] > 0 && player1Values[3] != player1PreviousValues[3]) {
 				player1Movement.SwitchLeft ();
@@ -227,6 +283,7 @@ public class ControlManager : MonoBehaviour {
 				Debug.Log ("TRACK SWITCH RIGHT");
 			}
 			player1PreviousValues [4] = player1Values [4];
+
 
 			//JUMP
 			if (player1Values [1] > 0 && player1Values [1] != player1PreviousValues [1]) {
@@ -250,9 +307,11 @@ public class ControlManager : MonoBehaviour {
 					Debug.Log("JUMPING!!!");
 				}
 			}
+			*/
 
 			player1PreviousValues [1] = player1Values [1];
 			player1PreviousValues [2] = player1Values [2];
+
 
 		}
 
