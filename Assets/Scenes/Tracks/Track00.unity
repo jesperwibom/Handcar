@@ -228,7 +228,7 @@ Transform:
   - {fileID: 1651367875}
   - {fileID: 164466128}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!114 &692473329 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11404728, guid: a9421b0d4ca4849c88ad2b171179fd25,
@@ -369,6 +369,10 @@ Prefab:
       propertyPath: player1
       value: 
       objectReference: {fileID: 2038766018}
+    - target: {fileID: 8230656, guid: e6e8c60a3c8514416862173ab2a86cd8, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0c3ef2f095ec54241a31fbb461ec10e9, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e6e8c60a3c8514416862173ab2a86cd8, type: 2}
   m_IsPrefabParent: 0
@@ -712,6 +716,14 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 22488242, guid: a9421b0d4ca4849c88ad2b171179fd25, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22488242, guid: a9421b0d4ca4849c88ad2b171179fd25, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9421b0d4ca4849c88ad2b171179fd25, type: 2}
   m_IsPrefabParent: 0
@@ -742,7 +754,7 @@ Transform:
   m_Children:
   - {fileID: 431921673}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!1001 &1801586218
 Prefab:
   m_ObjectHideFlags: 0
