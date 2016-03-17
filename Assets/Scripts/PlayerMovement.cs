@@ -29,10 +29,10 @@ public class PlayerMovement : MonoBehaviour {
 	public int floatSwitch = 0;
 
 	[Header("Soundeffects")]
-	public AudioSource flyingSound;
-	public AudioSource touchGroundSound;
-	public AudioSource crashSound;
-	public AudioSource failSound;
+	private AudioSource flyingSound;
+	private AudioSource touchGroundSound;
+	private AudioSource crashSound;
+	private AudioSource failSound;
 
 
 	[Header("GUI variables")]
@@ -48,6 +48,11 @@ public class PlayerMovement : MonoBehaviour {
 
 
 	void Start(){
+
+		flyingSound = GameObject.Find ("FlyingSound").GetComponent<AudioSource>();
+		touchGroundSound = GameObject.Find ("TouchGroundSound").GetComponent<AudioSource>();
+		crashSound = GameObject.Find ("CrashSound").GetComponent<AudioSource>();
+		failSound = GameObject.Find ("FailSound").GetComponent<AudioSource>();
 
 	
 		var em = burst.emission;
