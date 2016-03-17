@@ -49,10 +49,10 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Start(){
 
-		flyingSound = GameObject.Find ("FlyingSound");
-		touchGroundSound = GameObject.Find ("TouchGroundSound");
-		crashSound = GameObject.Find ("CrashSound");
-		failSound = GameObject.Find ("FailSound");
+		flyingSound = GameObject.Find ("FlyingSound").GetComponent<AudioSource>();
+		touchGroundSound = GameObject.Find ("TouchGroundSound").GetComponent<AudioSource>();
+		crashSound = GameObject.Find ("CrashSound").GetComponent<AudioSource>();
+		failSound = GameObject.Find ("FailSound").GetComponent<AudioSource>();
 
 	
 		var em = burst.emission;
