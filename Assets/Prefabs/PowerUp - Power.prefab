@@ -8,10 +8,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 471288}
-  - 33: {fileID: 3303796}
   - 65: {fileID: 6500642}
   - 23: {fileID: 2346784}
   - 114: {fileID: 11467908}
+  - 33: {fileID: 3359116}
   m_Layer: 0
   m_Name: PowerUp - Power
   m_TagString: Untagged
@@ -26,8 +26,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 172524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.14, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0.1}
+  m_LocalPosition: {x: -6.2970276, y: -1.6289425, z: 2.1601992}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -57,13 +57,13 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3303796
+--- !u!33 &3359116
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 172524}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: f1c8e20a96c3547358e76e58e562be30, type: 3}
 --- !u!65 &6500642
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -74,8 +74,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.3, y: 0.4, z: 0.1}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &11467908
 MonoBehaviour:
   m_ObjectHideFlags: 1
