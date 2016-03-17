@@ -351,7 +351,7 @@ public class ControlManager : MonoBehaviour {
 		//PLAYER 1
 		if (player1active) {
 			if(keyboardControl && Input.GetKeyDown("right")){
-				player1Movement.ChangeSpeed (0.5f);
+				player1Movement.ChangeSpeed (2f);
 
 
 			}
