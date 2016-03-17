@@ -8,9 +8,8 @@ public class JukeBox : MonoBehaviour {
 
 	void Start () {
 
-		randomNo = Random.Range (0, 7);
-		Play (randomNo);
-		Debug.Log (randomNo);
+		Play(Random.Range (0, 7));
+
 
 	}
 	public void Play(int song){
