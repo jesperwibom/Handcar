@@ -10,6 +10,8 @@ public class PowerUp : MonoBehaviour {
 	public GameObject player;
 	public TimeManager tm;
 
+	public AudioSource audioClip;
+
 	// Update is called once per frame
 	void Update () {
 		transform.Rotate(Vector3.up * (75f*Time.deltaTime), Space.World);
@@ -19,12 +21,15 @@ public class PowerUp : MonoBehaviour {
 		if (col.name == "Cart") {
 			if (timeBonus) {
 				tm.RefillTimer (2);
+				audioClip.Play ();
 			}
 			if (powerBonus) {
 				player.GetComponent<PlayerPower> ().AdjustPower(5f);
+				audioClip.Play ();
 			}
 			if (speedBonus) {
 				player.GetComponent<PlayerMovement> ().ChangeSpeed (2f);
+				audioClip.Play ();
 			}
 			Destroy (gameObject);
 		}

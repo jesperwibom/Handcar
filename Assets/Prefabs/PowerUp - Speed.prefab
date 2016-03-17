@@ -92,6 +92,7 @@ MonoBehaviour:
   speedBonus: 1
   player: {fileID: 0}
   tm: {fileID: 0}
+  audioClip: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
