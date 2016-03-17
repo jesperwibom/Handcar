@@ -4,10 +4,13 @@ using System.Collections;
 public class JukeBox : MonoBehaviour {
 	public AudioSource[] songs;
 
+	int randomNo;
 
 	void Start () {
 
-		Play(Random.Range (0, 6));
+		randomNo = Random.Range (0, 7);
+		Play (randomNo);
+		Debug.Log (randomNo);
 
 	}
 	public void Play(int song){
