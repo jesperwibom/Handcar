@@ -28,6 +28,9 @@ public class TimeManager : MonoBehaviour {
 	int secondsLeft = 30;
 	float totalSeconds = 0;
 
+	bool gameWon = false;
+	bool gameLost = false;
+
 	void Start(){
 		panelWinLose.SetActive(false);
 		bonus.enabled = false;
@@ -53,14 +56,20 @@ public class TimeManager : MonoBehaviour {
 	}
 
 	public void Win(){
-		panelWinLose.SetActive (true);
-		textWinLose.text = "YOU WIN";
-		total.text = totalSeconds.ToString ("F2");
-		counter.enabled = false;
-		StartCoroutine (BlinkTotal());
+		if (!gameLost) {
+			gameWon = true;
+			panelWinLose.SetActive (true);
+			textWinLose.text = "YOU WIN";
+			total.text = totalSeconds.ToString ("F2");
+			counter.enabled = false;
+			StartCoroutine (BlinkTotal ());
+		}
 	}
 
 	public void Lose(){
+		gameLost = true;
+		PlayerMovement pm = GameObject.FindGameObjectWithTag ("Player1").GetComponent<PlayerMovement>();
+		pm.Crash ("ground");
 		//DisplayRestart ();
 	}
 
@@ -70,6 +79,9 @@ public class TimeManager : MonoBehaviour {
 			secondsLeft--;
 			counter.text = secondsLeft.ToString();
 			yield return new WaitForSeconds(1);
+		}
+		if (!gameWon) {
+			Lose ();
 		}
 		timerIsRunning = false;
 	}

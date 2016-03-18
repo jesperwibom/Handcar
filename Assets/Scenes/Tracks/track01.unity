@@ -3446,6 +3446,12 @@ Transform:
   - {fileID: 1973211582}
   m_Father: {fileID: 1416407984}
   m_RootOrder: 17
+--- !u!114 &197288899 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11400000, guid: 7f79e7ab35c4d4ab4b6ccd9f24ecc815,
+    type: 2}
+  m_PrefabInternal: {fileID: 2124665382}
+  m_Script: {fileID: 11500000, guid: ee80ba8b4c5bd46839658bcfeb780748, type: 3}
 --- !u!1 &198497055
 GameObject:
   m_ObjectHideFlags: 0
@@ -11067,6 +11073,10 @@ Prefab:
       propertyPath: powerSlider
       value: 
       objectReference: {fileID: 2037516460}
+    - target: {fileID: 11435522, guid: 78d73b7e1290b4a89ab70c87a4b10a20, type: 2}
+      propertyPath: maxSpeed
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78d73b7e1290b4a89ab70c87a4b10a20, type: 2}
   m_IsPrefabParent: 0
@@ -13074,6 +13084,14 @@ Prefab:
     - target: {fileID: 8223256, guid: e6e8c60a3c8514416862173ab2a86cd8, type: 2}
       propertyPath: m_Volume
       value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 11413320, guid: e6e8c60a3c8514416862173ab2a86cd8, type: 2}
+      propertyPath: arduino1
+      value: 
+      objectReference: {fileID: 197288899}
+    - target: {fileID: 11413320, guid: e6e8c60a3c8514416862173ab2a86cd8, type: 2}
+      propertyPath: gameRunning
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e6e8c60a3c8514416862173ab2a86cd8, type: 2}
