@@ -86,12 +86,6 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &1997129 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11404040, guid: a9421b0d4ca4849c88ad2b171179fd25,
-    type: 2}
-  m_PrefabInternal: {fileID: 1668874044}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &6244849
 GameObject:
   m_ObjectHideFlags: 0
@@ -3452,6 +3446,12 @@ Transform:
   - {fileID: 1973211582}
   m_Father: {fileID: 1416407984}
   m_RootOrder: 17
+--- !u!114 &197288899 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11400000, guid: 7f79e7ab35c4d4ab4b6ccd9f24ecc815,
+    type: 2}
+  m_PrefabInternal: {fileID: 2124665382}
+  m_Script: {fileID: 11500000, guid: ee80ba8b4c5bd46839658bcfeb780748, type: 3}
 --- !u!1 &198497055
 GameObject:
   m_ObjectHideFlags: 0
@@ -11073,6 +11073,10 @@ Prefab:
       propertyPath: powerSlider
       value: 
       objectReference: {fileID: 2037516460}
+    - target: {fileID: 11435522, guid: 78d73b7e1290b4a89ab70c87a4b10a20, type: 2}
+      propertyPath: maxSpeed
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78d73b7e1290b4a89ab70c87a4b10a20, type: 2}
   m_IsPrefabParent: 0
@@ -13040,7 +13044,7 @@ Prefab:
     - target: {fileID: 11459516, guid: e6e8c60a3c8514416862173ab2a86cd8, type: 2}
       propertyPath: total
       value: 
-      objectReference: {fileID: 1997129}
+      objectReference: {fileID: 1668874045}
     - target: {fileID: 11475370, guid: e6e8c60a3c8514416862173ab2a86cd8, type: 2}
       propertyPath: playerPrefab
       value: 
@@ -13080,6 +13084,14 @@ Prefab:
     - target: {fileID: 8223256, guid: e6e8c60a3c8514416862173ab2a86cd8, type: 2}
       propertyPath: m_Volume
       value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 11413320, guid: e6e8c60a3c8514416862173ab2a86cd8, type: 2}
+      propertyPath: arduino1
+      value: 
+      objectReference: {fileID: 197288899}
+    - target: {fileID: 11413320, guid: e6e8c60a3c8514416862173ab2a86cd8, type: 2}
+      propertyPath: gameRunning
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e6e8c60a3c8514416862173ab2a86cd8, type: 2}
@@ -25871,6 +25883,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9421b0d4ca4849c88ad2b171179fd25, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1668874045 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11445940, guid: a9421b0d4ca4849c88ad2b171179fd25,
+    type: 2}
+  m_PrefabInternal: {fileID: 1668874044}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1669214310
 GameObject:
   m_ObjectHideFlags: 0

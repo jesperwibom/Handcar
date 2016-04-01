@@ -48,7 +48,7 @@ public class ControlManager : MonoBehaviour {
 	float controller1Force = 0;
 	float controller2Force = 0;
 
-	float forceModifier = 0.001f;
+	float forceModifier = 0.0035f;
 	float powerModifier = 0.001f;
 	int boostBonusForce = 15;
 
@@ -91,6 +91,9 @@ public class ControlManager : MonoBehaviour {
 		}
 		if (Input.GetKeyDown ("b")) {
 			gameRunning = !gameRunning;
+		}
+		if(keyboardControl && Input.GetKeyDown("r")){
+			gm.Respawn();
 		}
 
 
@@ -351,7 +354,7 @@ public class ControlManager : MonoBehaviour {
 		//PLAYER 1
 		if (player1active) {
 			if(keyboardControl && Input.GetKeyDown("right")){
-				player1Movement.ChangeSpeed (0.5f);
+				player1Movement.ChangeSpeed (2f);
 
 
 			}
@@ -365,9 +368,7 @@ public class ControlManager : MonoBehaviour {
 				player1Movement.Jump();
 			}
 
-			if(keyboardControl && Input.GetKeyDown("r")){
-				gm.Respawn();
-			}
+
 
 		}
 
