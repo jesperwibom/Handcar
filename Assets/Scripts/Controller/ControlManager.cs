@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Uniduino;
+using UnityEngine.SceneManagement;
 
 public class ControlManager : MonoBehaviour {
 
@@ -86,6 +87,9 @@ public class ControlManager : MonoBehaviour {
 
 	void Update(){
 
+		if(Input.GetKeyDown("escape")){
+			SceneManager.LoadScene ("StartScene");
+		}
 		if (Input.GetKeyDown ("i")) {
 			ResetControllerStates ();
 		}

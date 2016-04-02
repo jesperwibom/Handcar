@@ -11,3 +11,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Tracks/Track02.unity
   - enabled: 1
     path: Assets/Scenes/Tracks/Track03.unity
+  - enabled: 1
+    path: Assets/Scenes/Tracks/track01.unity

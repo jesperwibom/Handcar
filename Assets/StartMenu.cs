@@ -8,10 +8,16 @@ public class StartMenu : MonoBehaviour {
 
 		private Text pointer1;
 		private Text pointer2;
+	private Text pointer3;
 	private Text level1;
 	private Text level2;
+	private Text level3;
 		private AudioSource sound;
 		private AudioSource confirm;
+	private bool l1 = true;
+	private bool l2 = false;
+	private bool l3 = false;
+	private int levelSelect = 1;
 
 		// Use this for initialization
 		void Start ()
@@ -21,37 +27,65 @@ public class StartMenu : MonoBehaviour {
 			pointer2 = GameObject.Find ("Pointer2").GetComponent<Text> ();
 			level1 = GameObject.Find ("Level1").GetComponent<Text> ();
 			level2 = GameObject.Find ("Level2").GetComponent<Text> ();
+		level3 = GameObject.Find ("Level3").GetComponent<Text> ();
+		pointer3 = GameObject.Find ("Pointer3").GetComponent<Text> ();
 			pointer1.enabled = true;
+		pointer3.enabled = false;
 			pointer2.enabled = false;
 			sound = GameObject.Find ("MenuSound").GetComponent<AudioSource> ();
 			confirm = GameObject.Find ("ConfirmSound").GetComponent<AudioSource> ();
 		}
 
 		void Update ()
-		{
-			if (Input.GetKeyDown ("down")) {
-				pointer1.enabled = false;
-				pointer2.enabled = true;
-				sound.Play ();
-
-			}
-			if (Input.GetKeyDown ("up")) {
-				pointer1.enabled = true;
+	{
+		if (Input.GetKeyDown ("down") && pointer1.enabled) {
+			levelSelect = 2;
+			pointer2.enabled = true;
+			pointer1.enabled = false;
+			pointer3.enabled = false;
+			confirm.Play ();
+		} else if (Input.GetKeyDown ("down") && pointer2.enabled) {
+			levelSelect = 3;
+			pointer2.enabled = false;
+			pointer1.enabled = false;
+			pointer3.enabled = true;
+			confirm.Play ();
+		} else {
+			if (Input.GetKeyDown ("down") && pointer3.enabled) {
+				levelSelect = 1;
 				pointer2.enabled = false;
-				sound.Play ();
-
+				pointer1.enabled = true;
+				pointer3.enabled = false;
+				confirm.Play ();
 			}
-			if (Input.GetKeyDown ("e")) {
-				if (pointer1.enabled == true) {
-					StartCoroutine (Go (level1));
-				}
-				if (pointer2.enabled) {
-					StartCoroutine (Go (level2));
-				}
-			}
-
-
 		}
+		/*
+			
+
+
+
+			 */
+			
+		if (Input.GetKeyDown ("e")) {
+			if (pointer1.enabled == true) {
+				StartCoroutine (Go (level1));
+			}
+			if (pointer2.enabled) {
+				StartCoroutine (Go (level2));
+			}
+			if (pointer3.enabled) {
+				StartCoroutine (Go (level3));
+			}
+		}
+	}
+
+		
+		
+		
+
+
+
+		
 
 		IEnumerator Go (Text text)
 		{
@@ -71,11 +105,14 @@ public class StartMenu : MonoBehaviour {
 
 			if (text == level1) {
 				
-				SceneManager.LoadScene ("track02");
+				SceneManager.LoadScene ("track01");
 
 			}
 			if (text == level2) {
-				SceneManager.LoadScene("Track03");
+				SceneManager.LoadScene("Track02");
 			}
+		if (text == level3) {
+			SceneManager.LoadScene("Track03");
+		}
 		}
 	}
