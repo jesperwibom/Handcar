@@ -8314,6 +8314,12 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 452546, guid: a59716e7385a94c439e68e9725592694, type: 2}
   m_PrefabInternal: {fileID: 429972727}
+--- !u!114 &430483627 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11400000, guid: 7f79e7ab35c4d4ab4b6ccd9f24ecc815,
+    type: 2}
+  m_PrefabInternal: {fileID: 2124665382}
+  m_Script: {fileID: 11500000, guid: ee80ba8b4c5bd46839658bcfeb780748, type: 3}
 --- !u!1 &430788649
 GameObject:
   m_ObjectHideFlags: 0
@@ -16182,7 +16188,7 @@ Prefab:
     - target: {fileID: 11413320, guid: e6e8c60a3c8514416862173ab2a86cd8, type: 2}
       propertyPath: arduino1
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 430483627}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e6e8c60a3c8514416862173ab2a86cd8, type: 2}
   m_IsPrefabParent: 0
@@ -32522,7 +32528,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 473390, guid: c9527d894f2fc4aca852d74c8e11fe35, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.9
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 473390, guid: c9527d894f2fc4aca852d74c8e11fe35, type: 2}
       propertyPath: m_LocalPosition.y
@@ -40225,6 +40231,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 7f79e7ab35c4d4ab4b6ccd9f24ecc815, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 7f79e7ab35c4d4ab4b6ccd9f24ecc815, type: 2}
+      propertyPath: RebootDelay
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

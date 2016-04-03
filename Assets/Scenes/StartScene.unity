@@ -794,6 +794,52 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: deab21adab7234171ae00cfee8f14311, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &225394402
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 7f79e7ab35c4d4ab4b6ccd9f24ecc815, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 930.34344
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 7f79e7ab35c4d4ab4b6ccd9f24ecc815, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 765.4804
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 7f79e7ab35c4d4ab4b6ccd9f24ecc815, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 682.2419
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 7f79e7ab35c4d4ab4b6ccd9f24ecc815, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 7f79e7ab35c4d4ab4b6ccd9f24ecc815, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 7f79e7ab35c4d4ab4b6ccd9f24ecc815, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 7f79e7ab35c4d4ab4b6ccd9f24ecc815, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 7f79e7ab35c4d4ab4b6ccd9f24ecc815, type: 2}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 7f79e7ab35c4d4ab4b6ccd9f24ecc815, type: 2}
+      propertyPath: RebootDelay
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 7f79e7ab35c4d4ab4b6ccd9f24ecc815, type: 2}
+  m_IsPrefabParent: 0
 --- !u!4 &267259741 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 928b0cd25a5d84fcaa093ce0a3decdaa, type: 3}
@@ -1644,6 +1690,22 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11449854, guid: 6cec6011558af4e99bc083551e202820, type: 2}
       propertyPath: player1active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449854, guid: 6cec6011558af4e99bc083551e202820, type: 2}
+      propertyPath: menuControl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449854, guid: 6cec6011558af4e99bc083551e202820, type: 2}
+      propertyPath: menu
+      value: 
+      objectReference: {fileID: 364784910}
+    - target: {fileID: 11449854, guid: 6cec6011558af4e99bc083551e202820, type: 2}
+      propertyPath: arduino1
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449854, guid: 6cec6011558af4e99bc083551e202820, type: 2}
+      propertyPath: gameRunning
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

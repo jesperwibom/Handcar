@@ -63,6 +63,9 @@ public class ControlManager : MonoBehaviour {
 	bool trackSwitchLeft = false;
 	bool trackSwitchRight = false;
 
+	public bool menuControl = false;
+	public StartMenu menu;
+
 	//===================================================//
 
 	void Awake(){
@@ -70,8 +73,6 @@ public class ControlManager : MonoBehaviour {
 	}
 
 	void Start(){
-
-
 
 		if (player1active) {
 			player1Movement = player1.GetComponent<PlayerMovement> ();
@@ -230,7 +231,11 @@ public class ControlManager : MonoBehaviour {
 
 			if (jumpRelease) {
 				if (player1Values [3] > 0 && player1Values [4] > 0) {
-					player1Movement.Jump ();
+					if (menuControl) {
+						menu.Select ();
+					} else {
+						player1Movement.Jump ();
+					}
 					jumpRelease = false;
 					trackSwitchLeft = false;
 					trackSwitchRight = false;
@@ -244,10 +249,18 @@ public class ControlManager : MonoBehaviour {
 			if (player1Values [3] == 0 && player1Values [4] == 0) {
 				jumpRelease = true;
 				if (trackSwitchLeft) {
-					player1Movement.SwitchLeft ();
+					if (menuControl) {
+						menu.Down ();
+					} else {
+						player1Movement.SwitchLeft ();
+					}
 					trackSwitchLeft = false;
 				} else if (trackSwitchRight) {
-					player1Movement.SwitchRight ();
+					if (menuControl) {
+						menu.Down ();
+					} else {
+						player1Movement.SwitchRight ();
+					}
 					trackSwitchRight = false;
 				}
 			}
